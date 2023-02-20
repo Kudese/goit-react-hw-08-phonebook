@@ -1,0 +1,8 @@
+{
+  "contacts": {
+    "items": [],
+    "isLoading": false,
+    "error": null
+  },
+  "search": ""
+}
