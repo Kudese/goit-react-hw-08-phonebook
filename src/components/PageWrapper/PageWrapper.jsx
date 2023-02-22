@@ -5,17 +5,27 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 export default function PageWrapper() {
   const isLogin = useSelector(state => state.authentcation.isLogin);
-  const dataUser = useSelector(state=> state.authentcation.dataUser)
-  const dispatch = useDispatch()
-  console.log(isLogin)
-  const handleLogout = ()=>{
-  dispatch(logoutAccount())
-  }
+  const dataUser = useSelector(state => state.authentcation.dataUser);
+  const dispatch = useDispatch();
+  console.log(isLogin);
+  const handleLogout = () => {
+    dispatch(logoutAccount());
+  };
   return (
     <>
       <header>
         <h1> Contack books </h1>
-        {isLogin?<div><h3>{dataUser.name}</h3><p>{dataUser.email}</p><button onClick={handleLogout} type='button'>Logout</button></div>:<h2>Welcome</h2>}
+        {isLogin ? (
+          <div>
+            <h3>{dataUser.name}</h3>
+            <p>{dataUser.email}</p>
+            <button onClick={handleLogout} type="button">
+              Logout
+            </button>
+          </div>
+        ) : (
+          <h2>Welcome</h2>
+        )}
       </header>
       <aside>
         {isLogin || <NavLink to={'login'}>Login</NavLink>}
