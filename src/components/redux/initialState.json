@@ -1,0 +1,13 @@
+{
+  "contacts": {
+    "items": [],
+    "isLoading": false,
+    "error": null
+  },
+  "search": "",
+  "authentcation":{
+    "isLogin": false,
+    "dataUser": null,
+    "token": null
+  }
+}

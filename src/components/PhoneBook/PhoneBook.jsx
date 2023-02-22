@@ -1,12 +1,13 @@
-import { addContact } from 'components/redux/contact.thunk';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { addContact } from 'components/redux/contact/contact.thunk';
+import { token } from 'components/redux/http';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import s from '../PhoneBook/PhoneBook.module.css';
 
 export default function PhoneBook() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
+  const tokenKey = useSelector(state => state.authentcation.token);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -18,10 +19,14 @@ export default function PhoneBook() {
   };
   const handleSubmitForm = e => {
     e.preventDefault();
-    dispatch(addContact({ name, phone: number }));
+    console.log('submit');
+    dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
+  useEffect(()=>{
+ token.set(tokenKey)
+  },[tokenKey])
   return (
     <div className={s.conteiner}>
       <h2>PhoneBook</h2>

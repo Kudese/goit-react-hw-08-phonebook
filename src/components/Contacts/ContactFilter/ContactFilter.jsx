@@ -1,4 +1,4 @@
-import { searchAction } from 'components/redux/store';
+import { searchAction } from 'components/redux/contact/contack.slice';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function ContactFiler() {

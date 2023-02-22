@@ -4,15 +4,18 @@ import ContactIteam from './ContactIteam/ContacIteam';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from 'components/redux/contact.thunk';
+import { fetchContacts } from 'components/redux/contact/contact.thunk';
+import { token } from 'components/redux/http';
 
 export default function Contacts() {
   const data = useSelector(state => state.contacts.items);
   const search = useSelector(state => state.search);
+  const tokenKey = useSelector(state => state.authentcation.token);
   const dispatch = useDispatch();
   useEffect(() => {
+    token.set(tokenKey)
     dispatch(fetchContacts());
-  }, [dispatch]);
+  }, [dispatch, tokenKey]);
   const list = data.filter(el => {
     return el.name.toLowerCase().includes(search.toLowerCase());
   });

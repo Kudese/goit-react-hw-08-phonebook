@@ -1,77 +1,29 @@
-import BaseContact from '../redux/inishalState.json';
-import { combineReducers, configureStore, createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './contact.thunk';
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import { contactSlice, searchSlice } from "./contact/contack.slice";
+import initialState from '../redux/initialState.json';
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
+import { persistedReducer } from "./authentication/authentcation.slice";
 
-export const contactSlice = createSlice({
-  name: 'contacts',
-  initialState: BaseContact.contacts,
-  extraReducers: builder => {
-    builder
-      .addCase(fetchContacts.pending, (state, { payload }) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
-        state.items = payload;
-        state.isLoading = false;
-      })
-      .addCase(fetchContacts.rejected, (state, { payload }) => {
-        state.error = 'error';
-        state.isLoading = false;
-      })
-      .addCase(deleteContact.fulfilled, (state, action) => {
-        state.items = state.items.filter(el => {
-          return el.id !== action.meta.arg;
-        });
-      })
-      .addCase(addContact.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.items = [...state.items, payload];
-      });
-  },
-});
 
-export const searchSlice = createSlice({
-  name: 'search',
-  initialState: BaseContact.search,
-  reducers: {
-    searchAction: (state, { payload }) => {
-      return (state = payload);
-    },
-  },
-});
-
-export const { searchAction } = searchSlice.actions;
 const rootReduser = combineReducers({
   search: searchSlice.reducer,
   contacts: contactSlice.reducer,
+  authentcation: persistedReducer,
 });
 
 export const store = configureStore({
   reducer: rootReduser,
   devTools: true,
-  preloadedState: BaseContact,
+  preloadedState: initialState,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
-
-// export const { addContactAction, deleteContactAction } = contactSlice.actions;
-
-// reducers: {
-//   addContactAction: (state, { payload }) => {
-//     return [
-//       ...state,
-//       {
-//         id: `${nanoid()}`,
-//         name: `${payload.name}`,
-//         number: `${payload.number}`,
-//       },
-//     ];
-//   },
-//   deleteContactAction: (state, { payload }) => {
-//       return state.filter(el => {
-//           return el.id !== payload;
-//     });
-//   },
-
-// },
+export const persistor = persistStore(store)
 
 // const persistConfig = {
 //     key: 'root',
@@ -87,7 +39,7 @@ export const store = configureStore({
 // })
 // const persistedReducer = persistReducer(persistConfig, rootReduser)
 
-// export const persistor = persistStore(store)
+
 
 // import { addContactAction, deleteContactAction, searchAction } from './contact.action';
 
