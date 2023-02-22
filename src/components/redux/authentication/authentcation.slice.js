@@ -36,7 +36,7 @@ export const authSlice = createSlice({
           //TODO
       }).addCase(logoutAccount.fulfilled, (state, action)=>{
         console.log("auth clear")
-        state= initialState.authentcation
+        return initialState.authentcation
       });
   },
 });
