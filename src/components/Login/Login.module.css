@@ -1,0 +1,25 @@
+.section{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 90px;
+    max-width: 900px;
+    background-color: #eee;
+    height: 600px;
+}
+.form{
+    display: flex;
+    flex-direction: column
+}
+.label{
+    color: darkblue;
+    padding: 10px;
+    max-width: 280px;
+display: flex;
+justify-content: space-between
+}
+.button{
+    width: 120px;
+    margin-left: 114px;
+    background-color: cyan;
+    border: 1px solid transparent;
+}

@@ -1,0 +1,32 @@
+.logo{
+    margin: 0;
+    padding-top: 40px;
+    color: blue;
+}
+.header{
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: darkgrey;
+    display: flex;
+    height: 90px;
+}
+.person{
+    top: 90px;
+    position: absolute;
+    margin-left: auto;
+    padding: 10px;
+}
+.list_navigate{
+    list-style: none;
+    display: flex;
+}
+.list_navigate_iteams{
+ border-radius: 3px;
+    margin: 20px 5px 5px 5px;
+    padding: 5px;
+    background-color: blueviolet;
+}
+.navigate{
+    margin-left: auto;
+}

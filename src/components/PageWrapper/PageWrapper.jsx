@@ -2,7 +2,7 @@ import { logoutAccount } from 'components/redux/authentication/authentication.th
 import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
-
+import s from './PageWrapper.module.css';
 export default function PageWrapper() {
   const isLogin = useSelector(state => state.authentcation.isLogin);
   const dataUser = useSelector(state => state.authentcation.dataUser);
@@ -13,10 +13,10 @@ export default function PageWrapper() {
   };
   return (
     <>
-      <header>
-        <h1> Contack books </h1>
+      <header className={s.header}>
+        <h1 className={s.logo}> Contack books </h1>
         {isLogin ? (
-          <div>
+          <div className={s.person}>
             <h3>{dataUser.name}</h3>
             <p>{dataUser.email}</p>
             <button onClick={handleLogout} type="button">
@@ -24,15 +24,21 @@ export default function PageWrapper() {
             </button>
           </div>
         ) : (
-          <h2>Welcome</h2>
+          <div className={s.navigate}>
+            <ul className={s.list_navigate}>
+              <li className={s.list_navigate_iteams}>
+                {<NavLink to={'homepage'}>HomePage</NavLink>}
+              </li>
+              <li className={s.list_navigate_iteams}>
+                {<NavLink to={'login'}>Login</NavLink>}
+              </li>
+              <li className={s.list_navigate_iteams}>
+                {<NavLink to={'makeaccount'}>Created account</NavLink>}
+              </li>
+            </ul>
+          </div>
         )}
       </header>
-      <aside>
-        {isLogin || <NavLink to={'login'}>Login</NavLink>}
-        {isLogin || <NavLink to={'makeaccount'}>Created account</NavLink>}
-        {!isLogin || <NavLink to={'addcontact'}>Add contact </NavLink>}
-        {!isLogin || <NavLink to={'contactlist'}> Contact List</NavLink>}
-      </aside>
       <Suspense fallback={<p>Loading</p>}>
         <Outlet />
       </Suspense>

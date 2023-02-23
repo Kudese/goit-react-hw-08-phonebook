@@ -1,7 +1,7 @@
 import { makeAccount } from 'components/redux/authentication/authentication.thunk';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import s from './MakeAccount.module.css'
 export default function MakeAccount() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,18 +24,18 @@ export default function MakeAccount() {
     setPassWorld(e.target.value);
   };
   return (
-    <div>
+    <div className={s.section}>
       <h2>Make Account</h2>
-      <form action="" onSubmit={handleSubmit}>
-        <label>
+      <form className={s.form} action="" onSubmit={handleSubmit}>
+        <label className={s.label}>
           Name
           <input name="name" onChange={handleName} value={name} type={'text'}></input>
-        </label>
-        <label>
+        </label >
+        <label className={s.label}>
           Email
           <input name="email" onChange={handleEmail} value={email} type={'email'}></input>
         </label>
-        <label>
+        <label className={s.label}>
           PassWord
           <input
             name="password"
@@ -44,7 +44,7 @@ export default function MakeAccount() {
             type={'password'}
           ></input>
         </label>
-        <button type={'submt'}> Create account</button>
+        <button className={s.button} type={'submt'}> Create account</button>
       </form>
     </div>
   );
