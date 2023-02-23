@@ -1,6 +1,6 @@
 import { addContact } from 'components/redux/contact/contact.thunk';
 import { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import s from '../PhoneBook/PhoneBook.module.css';
 
 export default function PhoneBook() {
@@ -26,8 +26,8 @@ export default function PhoneBook() {
   return (
     <div className={s.conteiner}>
       <h2>PhoneBook</h2>
-      <form onSubmit={handleSubmitForm}>
-        <label>
+      <form className={s.form} onSubmit={handleSubmitForm}>
+        <label className={s.label}>
           Name
           <input
             onChange={handleChange}
@@ -39,7 +39,7 @@ export default function PhoneBook() {
             required
           />
         </label>
-        <label>
+        <label className={s.label}>
           Number
           <input
             onChange={handleChange}
@@ -51,7 +51,9 @@ export default function PhoneBook() {
             required
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button className={s.button} type="submit">
+          Add contact
+        </button>
       </form>
     </div>
   );

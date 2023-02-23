@@ -3,9 +3,10 @@ import ContactFiler from './ContactFilter/ContactFilter';
 import ContactIteam from './ContactIteam/ContacIteam';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { fetchContacts } from 'components/redux/contact/contact.thunk';
 import { token } from 'components/redux/http';
+import { CircularProgress } from '@mui/material';
 
 export default function Contacts() {
   const data = useSelector(state => state.contacts.items);
@@ -13,7 +14,7 @@ export default function Contacts() {
   const tokenKey = useSelector(state => state.authentcation.token);
   const dispatch = useDispatch();
   useEffect(() => {
-    token.set(tokenKey)
+    token.set(tokenKey);
     dispatch(fetchContacts());
   }, [dispatch, tokenKey]);
   const list = data.filter(el => {
@@ -24,9 +25,13 @@ export default function Contacts() {
     <div className={s.conteiner}>
       <h2>Contacts</h2>
       <ContactFiler />
-      <ul>
+      <ul className={s.list}>
         {list.map(el => {
-          return <ContactIteam key={el.id} contact={el} />;
+          return (
+            <Suspense fallback={<CircularProgress />}>
+              <ContactIteam key={el.id} contact={el} />;
+            </Suspense>
+          );
         })}
       </ul>
     </div>

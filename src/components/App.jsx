@@ -1,16 +1,19 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import PageWrapper from './PageWrapper/PageWrapper';
-import { Suspense } from 'react';
-import Login from './Login/Login';
-import MakeAccount from './MakeAccount/MakeAccount';
+import { lazy, Suspense } from 'react';
+import { CircularProgress } from '@mui/material';
 import PrivateRouter from './PrivateRouter/PrivateRouter';
 import PublicRouter from './PublicRouter/PublicRouter';
-import Contact from 'Page/Connact/Contact';
-import HomePage from 'Page/HomePage/HomePage';
+
+const Contact = lazy(() => import('Page/Connact/Contact'));
+const Login = lazy(() => import('./Login/Login'));
+const MakeAccount = lazy(() => import('./MakeAccount/MakeAccount'));
+const HomePage = lazy(() => import('Page/HomePage/HomePage'));
+
 export const App = () => {
   return (
     <BrowserRouter basename="goit-react-hw-08-phonebook">
-      <Suspense fallback={<p>Loading</p>}>
+      <Suspense fallback={<CircularProgress />}>
         <Routes>
           <Route path="" element={<PageWrapper />}>
             <Route path="" element={<PrivateRouter />}>

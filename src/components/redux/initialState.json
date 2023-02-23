@@ -5,7 +5,7 @@
     "error": null
   },
   "search": "",
-  "authentcation":{
+  "authentcation": {
     "isLogin": false,
     "dataUser": null,
     "token": null

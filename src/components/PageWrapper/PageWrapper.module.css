@@ -16,6 +16,7 @@
     position: absolute;
     margin-left: auto;
     padding: 10px;
+    
 }
 .list_navigate{
     list-style: none;
@@ -29,4 +30,9 @@
 }
 .navigate{
     margin-left: auto;
+}
+
+.outlog{
+    background-color: tomato;
+    border-color: transparent;
 }

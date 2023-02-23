@@ -2,6 +2,7 @@
 import { deleteContact } from 'components/redux/contact/contact.thunk';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import s from './ContactIteam.module.css';
 export default function ContactIteam({ contact }) {
   const { id, name, number } = contact;
   const dispatch = useDispatch();
@@ -9,9 +10,9 @@ export default function ContactIteam({ contact }) {
     dispatch(deleteContact(id));
   };
   return (
-    <li>
+    <li className={s.iteam}>
       {name}:{number}
-      <button type="button" onClick={handleGetIdContact}>
+      <button className={s.button} type="button" onClick={handleGetIdContact}>
         Delete
       </button>
     </li>
@@ -22,6 +23,5 @@ ContactIteam.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
-    
   }),
 };

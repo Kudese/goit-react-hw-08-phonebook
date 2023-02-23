@@ -1,3 +1,4 @@
+import { CircularProgress } from '@mui/material';
 import { logoutAccount } from 'components/redux/authentication/authentication.thunk';
 import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,6 @@ export default function PageWrapper() {
   const isLogin = useSelector(state => state.authentcation.isLogin);
   const dataUser = useSelector(state => state.authentcation.dataUser);
   const dispatch = useDispatch();
-  console.log(isLogin);
   const handleLogout = () => {
     dispatch(logoutAccount());
   };
@@ -19,7 +19,7 @@ export default function PageWrapper() {
           <div className={s.person}>
             <h3>{dataUser.name}</h3>
             <p>{dataUser.email}</p>
-            <button onClick={handleLogout} type="button">
+            <button className={s.outlog} onClick={handleLogout} type="button">
               Logout
             </button>
           </div>
@@ -39,7 +39,7 @@ export default function PageWrapper() {
           </div>
         )}
       </header>
-      <Suspense fallback={<p>Loading</p>}>
+      <Suspense fallback={<CircularProgress />}>
         <Outlet />
       </Suspense>
     </>
