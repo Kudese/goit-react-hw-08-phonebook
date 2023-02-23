@@ -22,7 +22,7 @@ export default function Contacts() {
   });
 
   return (
-    <Suspense fallback={<CircularProgress />}>
+    
       <div className={s.conteiner}>
         <h2>Contacts</h2>
         <ContactFiler />
@@ -32,6 +32,6 @@ export default function Contacts() {
           })}
         </ul>
       </div>
-    </Suspense>
+    
   );
 }
