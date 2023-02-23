@@ -3,10 +3,10 @@ import ContactFiler from './ContactFilter/ContactFilter';
 import ContactIteam from './ContactIteam/ContacIteam';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { fetchContacts } from 'components/redux/contact/contact.thunk';
 import { token } from 'components/redux/http';
-import { CircularProgress } from '@mui/material';
+
 
 export default function Contacts() {
   const data = useSelector(state => state.contacts.items);
