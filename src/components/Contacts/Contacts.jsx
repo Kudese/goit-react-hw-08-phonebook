@@ -22,18 +22,16 @@ export default function Contacts() {
   });
 
   return (
-    <div className={s.conteiner}>
-      <h2>Contacts</h2>
-      <ContactFiler />
-      <ul className={s.list}>
-        {list.map(el => {
-          return (
-            <Suspense fallback={<CircularProgress />}>
-              <ContactIteam key={el.id} contact={el} />;
-            </Suspense>
-          );
-        })}
-      </ul>
-    </div>
+    <Suspense fallback={<CircularProgress />}>
+      <div className={s.conteiner}>
+        <h2>Contacts</h2>
+        <ContactFiler />
+        <ul className={s.list}>
+          {list.map(el => {
+            return <ContactIteam key={el.id} contact={el} />;
+          })}
+        </ul>
+      </div>
+    </Suspense>
   );
 }
